@@ -31,8 +31,8 @@ check () {
 
   mkdir -p "${temp_dir}"
 
-  curl --retry 3 "${base_url}/package.json" -o "${temp_dir}/package.json"
-  curl --retry 3 "${base_url}/yarn.lock" -o "${temp_dir}/yarn.lock"
+  curl -s --retry 3 "${base_url}/package.json" -o "${temp_dir}/package.json"
+  curl -s --retry 3 "${base_url}/yarn.lock" -o "${temp_dir}/yarn.lock"
 
   iso_date_last_check=$(date --date "-${CRON_INTERVAL} min" --utc --iso-8601=seconds | cut -f1 -d'+')
 

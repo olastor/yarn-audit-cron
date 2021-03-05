@@ -26,6 +26,8 @@ Create a `projects.tsv` file using this format:
 
 Please note that the project url cannot be just a link to a repository, but it has to be an url that when "/package.json", "/yarn.lock" are appended, then those are valid links pointing to **raw** files.
 
+**Warning:** The url should not end with '/', it'll break.
+
 
 Update the variables at the top of the script:
 
