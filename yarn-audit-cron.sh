@@ -36,7 +36,7 @@ check () {
 
   iso_date_last_check=$(date --date "-${CRON_INTERVAL} min" --utc --iso-8601=seconds | cut -f1 -d'+')
 
-  yarn audit --cwd "${temp_dir}" --groups "${AUDIT_GROUPS}" --json > "${temp_dir}/audit.json" 2> /dev/null
+  yarn audit --cwd "${temp_dir}" --groups "${AUDIT_GROUPS}" --json > "${temp_dir}/audit.json" 2> /dev/null || true
 
   if [[ ! -z "${YARN_AUDIT_SKIP_DATE}" ]]; then
     message=$(cat "${temp_dir}/audit.json" | jq -r 'select(.type == "auditAdvisory") | "\n_severity_: **\(.data.advisory.severity)**\n_report link_: **\(.data.advisory.url)**\n_dependency_: **\(.data.resolution.path)**"')
